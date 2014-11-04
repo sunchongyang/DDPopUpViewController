@@ -1,7 +1,7 @@
 DDPopUpViewController
 =====================
 
-PopupView for iOS，support iPhone&amp;iPad,support interface rotate.
+With DDPopUpViewController,you can show a popup viewcontroller in a easy way.
 
 ### Screenshots
 
