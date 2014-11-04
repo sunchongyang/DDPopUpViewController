@@ -3,6 +3,8 @@ DDPopUpViewController
 
 With DDPopUpViewController,you can show a popup viewcontroller in a easy way.
 
+See the Sample project to know more.
+
 ### Screenshots
 
 ---
