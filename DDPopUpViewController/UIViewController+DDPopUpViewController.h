@@ -53,8 +53,6 @@ UIKIT_EXTERN NSTimeInterval const kPopupModalAnimationDuration;
 @property (nonatomic,assign) DDPopUpPosition popUpPosition; //弹出视图的位置
 @property (nonatomic,assign) BOOL dismissWhenTouchBackground; //是否允许点击背景dismiss
 
-+ (NSArray *)popUpViewControllers;
-
 //use defalut animationType && dismissWhenTouchBackground = YES
 - (void)showPopUpViewController:(UIViewController *)popUpViewController;
 //dismissWhenTouchBackground = YES

@@ -25,8 +25,6 @@ static char* previosKeyWindowKey = "previosKeyWindowKey";
 NSTimeInterval const kPopupModalAnimationDuration = 0.30f;
 NSString *const DDPopUpViewControllerDissmissNotification = @"DDPopUpViewControllerDissmissNotification";
 
-static NSMutableArray *__popUpViewControllers = nil;
-
 @interface UIViewController (DDPopUpViewControllerPrivate)
 
 @property (nonatomic,assign) UIViewController *popUpParentViewController;
@@ -164,8 +162,6 @@ static NSMutableArray *__popUpViewControllers = nil;
 /*
 + (void)load
 {
-    __popUpViewControllers = [[NSMutableArray alloc] init];
-    
     Method original =  class_getInstanceMethod([UIViewController class], @selector(dealloc));
     Method swizzle = class_getInstanceMethod([UIViewController class], @selector(sizzled_dealloc));
     method_exchangeImplementations(original, swizzle);
@@ -381,11 +377,6 @@ static NSMutableArray *__popUpViewControllers = nil;
 
 #pragma mark - public methods
 
-+ (NSArray *)popUpViewControllers;
-{
-    return [NSArray arrayWithArray:__popUpViewControllers];
-}
-
 - (void)showPopUpViewController:(UIViewController *)popUpViewController
 {
     [self showPopUpViewController:popUpViewController animationType:DDPopUpAnimationTypeFade dismissWhenTouchBackground:YES];
@@ -403,7 +394,6 @@ static NSMutableArray *__popUpViewControllers = nil;
     }
     
     self.popUpViewController = popUpViewController;
-    [__popUpViewControllers addObject:popUpViewController];
     popUpViewController.animationType = animationType;
     popUpViewController.dismissWhenTouchBackground = dismissWhenTouchBackground;
     popUpViewController.popUpParentViewController = self;
@@ -469,7 +459,6 @@ static NSMutableArray *__popUpViewControllers = nil;
     }
     
     if (vc) {
-        [__popUpViewControllers removeObject:vc.popUpViewController];
         [vc dismissPopUpView:animationType completion:completion];
     }
     else if (self.parentViewController) {
